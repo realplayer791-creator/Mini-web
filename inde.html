@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Masterclass | Learn Artificial Intelligence</title>
+<!-- Font Awesome for Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --primary: #4f46e5; /* Indigo */
+    --secondary: #0f172a; /* Dark Slate */
+    --accent: #f43f5e; /* Rose */
+    --bg-light: #f8fafc;
+    --text-dark: #334155;
+    --text-light: #94a3b8;
+    --white: #ffffff;
+    --shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+}
+
+* { margin:0; padding:0; box-sizing:border-box; font-family: 'Inter', sans-serif; }
+body { background-color: var(--bg-light); color: var(--text-dark); line-height:1.6; }
+a { text-decoration:none; color:inherit; }
+ul { list-style:none; }
+
+.container { max-width:1100px; margin:0 auto; padding:0 20px; }
+
+/* Navbar */
+.navbar { background: var(--white); box-shadow: var(--shadow); padding:1rem 0; position:sticky; top:0; z-index:100; }
+.navbar .container { display:flex; justify-content:space-between; align-items:center; }
+.logo { font-size:1.5rem; font-weight:700; color: var(--secondary); }
+.dot { color: var(--primary); }
+.nav-links { display:flex; gap:20px; align-items:center; }
+.btn-nav { background: var(--primary); color: var(--white); padding:8px 16px; border-radius:5px; transition:0.3s; }
+.btn-nav:hover { background:#4338ca; }
+.hamburger { display:none; cursor:pointer; font-size:1.5rem; }
+
+/* Hero Section */
+.hero { text-align:center; padding:100px 0; background:linear-gradient(to right, var(--secondary), #1e293b); color: var(--white); }
+.hero h1 { font-size:2.5rem; margin-bottom:1rem; }
+.hero p { font-size:1.1rem; margin-bottom:2rem; color: var(--text-light); }
+.btn-primary { background: var(--accent); color: var(--white); padding:12px 24px; border-radius:5px; font-weight:600; transition: transform 0.2s; }
+.btn-primary:hover { transform: translateY(-2px); }
+
+/* Blog Section */
+.blog-section { padding:60px 0; }
+.section-header { text-align:center; margin-bottom:40px; }
+.blog-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap:30px; }
+.blog-card { background: var(--white); border-radius:10px; overflow:hidden; box-shadow: var(--shadow); transition:0.3s; display:flex; flex-direction:column; }
+.blog-card:hover { transform: translateY(-5px); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); }
+.card-img { height:200px; background-color:#ddd; background-size:cover; background-position:center; }
+.card-content { padding:20px; flex-grow:1; display:flex; flex-direction:column; }
+.card-date { color: var(--text-light); font-size:0.85rem; margin-bottom:10px; }
+.card-title { font-size:1.25rem; margin-bottom:10px; color: var(--secondary); }
+.card-excerpt { font-size:0.95rem; color:#64748b; margin-bottom:20px; flex-grow:1; }
+.read-more { color: var(--primary); font-weight:600; cursor:pointer; }
+
+/* Subscribe Section */
+.subscribe-section { padding:60px 0; background:#e2e8f0; }
+.sub-card { background: var(--white); border-radius:15px; display:flex; flex-wrap:wrap; overflow:hidden; box-shadow: var(--shadow); }
+.sub-info { flex:1; padding:40px; background: var(--secondary); color: var(--white); min-width:300px; }
+.sub-info h2 { margin-bottom:15px; }
+.payment-instruction { margin-top:30px; background: rgba(255,255,255,0.1); padding:20px; border-radius:8px; }
+.highlight-number { font-size:1.2rem; color: var(--accent); font-weight:bold; margin:10px 0; }
+.note { margin-top:15px; opacity:0.7; }
+.sub-form { flex:1; padding:40px; min-width:300px; }
+.form-group { margin-bottom:20px; }
+.form-group label { display:block; margin-bottom:5px; font-weight:600; }
+.form-group input { width:100%; padding:10px; border:1px solid #cbd5e1; border-radius:5px; }
+.btn-submit { width:100%; padding:12px; background: var(--primary); color: var(--white); border:none; border-radius:5px; font-size:1rem; cursor:pointer; }
+
+/* Footer */
+footer { background: var(--secondary); color: var(--text-light); padding:30px 0; text-align:center; }
+.socials { margin-top:15px; }
+.socials a { margin:0 10px; font-size:1.2rem; transition:0.3s; }
+.socials a:hover { color: var(--white); }
+
+/* Modal Styling */
+.modal { display:none; position:fixed; z-index:200; left:0; top:0; width:100%; height:100%; background-color: rgba(0,0,0,0.8); overflow-y:auto; }
+.modal-content { background-color: var(--white); margin:5% auto; padding:40px; width:90%; max-width:800px; border-radius:10px; position:relative; }
+.close-modal { position:absolute; top:15px; right:25px; font-size:2rem; cursor:pointer; }
+.resource-links a { display:inline-block; background:#f1f5f9; color: var(--primary); padding:8px 12px; margin:5px 5px 0 0; border-radius:4px; font-size:0.9rem; }
+
+/* Mobile Responsive */
+@media (max-width:768px) { 
+  .nav-links { display:none; } 
+  .hamburger { display:block; }
+  .sub-card { flex-direction:column; } 
+}
+</style>
+
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="navbar">
+    <div class="container">
+        <a href="#" class="logo">AI Masterclass<span class="dot">.</span></a>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#blog">Blog</a></li>
+            <li><a href="#subscribe" class="btn-nav">Subscribe</a></li>
+        </ul>
+        <div class="hamburger">
+            <i class="fas fa-bars"></i>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<header id="home" class="hero">
+    <div class="container">
+        <h1>Master Artificial Intelligence</h1>
+        <p>From Machine Learning basics to Deep Learning mastery. Access curated resources and start your journey today.</p>
+        <a href="#blog" class="btn-primary">Start Reading</a>
+    </div>
+</header>
+
+<!-- Blog Section -->
+<section id="blog" class="blog-section">
+    <div class="container">
+        <div class="section-header">
+            <h2>Latest Articles</h2>
+            <p>Explore our curated tutorials and guides.</p>
+        </div>
+        <div id="blog-grid" class="blog-grid">
+            <!-- Posts injected by JS -->
+        </div>
+    </div>
+</section>
+
+<!-- Subscription Section -->
+<section id="subscribe" class="subscribe-section">
+    <div class="container">
+        <div class="sub-card">
+            <div class="sub-info">
+                <h2>🚀 Unlock Premium Resources</h2>
+                <p>Get exclusive access to Google Drive folders containing datasets, code templates, and PDF guides.</p>
+                <div class="payment-instruction">
+                    <h3>How to Subscribe</h3>
+                    <ol>
+                        <li>Send <strong>5 USD</strong> via Mobile Money to:</li>
+                        <li class="highlight-number"><i class="fas fa-mobile-alt"></i> +265 999 123 456</li>
+                        <li>Note your <strong>Transaction Reference ID</strong>.</li>
+                        <li>Fill the form below to verify payment.</li>
+                    </ol>
+                    <p class="note"><small>*Resources are sent manually to your email within 24 hours.</small></p>
+                </div>
+            </div>
+
+            <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="sub-form">
+                <h3>Verify Payment</h3>
+                <div class="form-group"><label>Full Name</label><input type="text" name="name" placeholder="John Doe" required></div>
+                <div class="form-group"><label>Email Address</label><input type="email" name="email" placeholder="john@example.com" required></div>
+                <div class="form-group"><label>Phone Number</label><input type="tel" name="phone" placeholder="+265..." required></div>
+                <div class="form-group"><label>Payment Reference / Trans ID</label><input type="text" name="reference" placeholder="e.g., 8H29KS92" required></div>
+                <button type="submit" class="btn-submit">Submit Subscription</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <p>&copy; 2023 AI Masterclass. All rights reserved.</p>
+        <div class="socials">
+            <a href="#"><i class="fab fa-youtube"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-github"></i></a>
+        </div>
+    </div>
+</footer>
+
+<!-- Blog Post Modal -->
+<div id="post-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <div id="modal-body"></div>
+    </div>
+</div>
+
+<script>
+// Blog Post Data
+const blogPosts = [
+    {
+        id: 1,
+        title: "Introduction to Artificial Intelligence",
+        date: "November 20, 2023",
+        image: "https://images.unsplash.com/photo-1555255707-c07966088b7b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+        excerpt: "What is AI? Learn the basic concepts, history, and the difference between AI, Machine Learning, and Deep Learning.",
+        content: `
+            <p>Artificial Intelligence (AI) is the simulation of human intelligence processes by machines, especially computer systems.</p>
+            <h3>Key Concepts</h3>
+            <ul>
+                <li><strong>Narrow AI:</strong> Designed for a specific task.</li>
+                <li><strong>General AI:</strong> Hypothetical AI with human-level cognitive abilities.</li>
+            </ul>
+        `,
+        resources: [
+            { name: "YouTube", url: "https://www.youtube.com/results?search_query=intro+to+AI" },
+            { name: "PDF Guide", url: "https://drive.google.com/" },
+            { name: "Coursera", url: "https://coursera.org" }
+        ]
+    },
+    {
+        id: 2,
+        title: "Getting Started with Python for ML",
+        date: "November 22, 2023",
+        image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+        excerpt: "Python is the language of AI. Set up your environment and write your first ML script.",
+        content: `<p>Python is simple and has libraries like Pandas, NumPy, and Scikit-learn.</p>`,
+        resources: [
+            { name: "Python.org", url: "https://www.python.org" },
+            { name: "Kaggle", url: "https://www.kaggle.com" }
+        ]
+    },
+    {
+        id: 3,
+        title: "Understanding Neural Networks",
+        date: "November 25, 2023",
+        image: "https://images.unsplash.com/photo-1507413245164-6160d8298b31?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+        excerpt: "Dive into neural network architecture and learn how nodes, weights, and biases work together.",
+        content: `<p>Neural networks allow computers to recognize patterns and solve AI problems.</p>`,
+        resources: [
+            { name: "Deep Learning Book", url: "https://www.deeplearningbook.org/" }
+        ]
+    }
+];
+
+// Render Posts
+const blogGrid = document.getElementById('blog-grid');
+function renderPosts() {
+    blogGrid.innerHTML = blogPosts.map(post => `
+        <article class="blog-card">
+            <div class="card-img" style="background-image:url('${post.image}')"></div>
+            <div class="card-content">
+                <span class="card-date">${post.date}</span>
+                <h3 class="card-title">${post.title}</h3>
+                <p class="card-excerpt">${post.excerpt}</p>
+                <span class="read-more" onclick="openPost(${post.id})">Read Article &rarr;</span>
+            </div>
+        </article>
+    `).join('');
+}
+
+// Modal Logic
+const modal = document.getElementById('post-modal');
+const modalBody = document.getElementById('modal-body');
+const closeModal = document.querySelector('.close-modal');
+
+function openPost(id) {
+    const post = blogPosts.find(p => p.id===id);
+    if(!post) return;
+
+    const resourceLinks = post.resources.map(r => `<a href="${r.url}" target="_blank"><i class="fas fa-external-link-alt"></i> ${r.name}</a>`).join('');
+
+    modalBody.innerHTML = `
+        <h1>${post.title}</h1>
+        <p class="card-date">${post.date}</p>
+        <img src="${post.image}" style="width:100%; max-height:400px; object-fit:cover; border-radius:10px; margin:20px 0;">
+        <div class="post-body">${post.content}</div>
+        <div style="margin-top:30px; padding:20px; background:#f8fafc; border-left:4px solid var(--primary);">
+            <h3>Resources</h3>
+            <div class="resource-links">${resourceLinks}</div>
+        </div>
+    `;
+    modal.style.display="block";
+    document.body.style.overflow="hidden";
+}
+
+closeModal.onclick = () => { modal.style.display="none"; document.body.style.overflow="auto"; }
+window.onclick = (event) => { if(event.target==modal){ modal.style.display="none"; document.body.style.overflow="auto"; } }
+
+// Mobile Menu Toggle
+const hamburger = document.querySelector('.hamburger');
+const navLinks = document.querySelector('.nav-links');
+hamburger.addEventListener('click', () => {
+    navLinks.style.display = navLinks.style.display==='flex'?'none':'flex';
+    if(navLinks.style.display==='flex'){
+        navLinks.style.flexDirection='column';
+        navLinks.style.position='absolute';
+        navLinks.style.top='60px';
+        navLinks.style.right='0';
+        navLinks.style.background='white';
+        navLinks.style.width='100%';
+        navLinks.style.padding='20px';
+        navLinks.style.boxShadow='0 5px 10px rgba(0,0,0,0.1)';
+    }
+});
+
+// Initialize
+renderPosts();
+</script>
+
+</body>
+</html>
